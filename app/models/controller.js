@@ -36,7 +36,7 @@ angular.module('forum')
         $scope.user = {};
         $scope.userInfo = {};
         $scope.login = function(){
-            $http.post('http://104.131.4.157/login', $scope.user)
+            $http.post('https://104.131.4.157/login', $scope.user)
                 .success(function(content){
                     $scope.success = true;
                     $scope.error = false;
