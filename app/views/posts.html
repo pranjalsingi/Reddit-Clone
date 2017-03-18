@@ -1,0 +1,75 @@
+<div ng-controller="PostController">
+    <div class="container">
+        <ol class="breadcrumb">
+          <li><a ui-sref="topics">Topics</a></li>
+          <li class="active">Posts</li>
+        </ol>
+    </div>
+    
+    <div class="container">
+        <div class="jumbotron">
+            <div class="panel panel-default">
+              <!-- Default panel contents -->
+                <div class="panel-heading"><h4>Topic: {{topic.name}}&emsp;<!--- By {{topic.author}}--></h4></div>
+                
+                <!-- List group -->
+                <ul class="list-group">
+                    <li class="list-group-item" ng-repeat="post in topic.posts | orderBy : '-votes'">
+                        <div class="row" ng-show="edit[topic.posts.indexOf(post)]">
+                            <div class="form-group col-md-4">
+                                <label for="Title">Title</label>
+                                <input type="text" name="title" class="form-control col-md-3" ng-model="post.title"/>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="Link">Link</label>
+                                <input type="text" name="link" class="form-control col-md-3" ng-model="post.link" />
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="Author">Author</label>
+                                <input type="text" name="author" class="form-control col-md-3" ng-model="post.author" disabled />
+                            </div>
+                            <div class="form-group col-md-3">
+                                <button class="btn btn-info" ng-click="updatePost(post)">Update</button>
+                            </div>
+                        </div>
+                        
+                        <div class="row" ng-hide="edit[topic.posts.indexOf(post)]">
+                            <span class="glyphicon glyphicon-chevron-up col-md-1" ng-click="upvotePost(post)">{{post.votes}}</span>
+                            <a ui-sref="topics.comments({topicid: topic._id, postid: post._id, topicName: topic.name})" class="col-md-4">
+                                <span class="list-group-item-heading">{{post.title}}&emsp;-By {{post.author}}</span>
+                            </a>
+                            <a href="{{post.link}}" target="_blank" class="col-md-3">Link : {{post.link}}</a>
+                            <div class="form-group col-md-4" ng-hide="role">
+                                <button class="btn btn-info" ng-click="editPost(post)">Edit</button>
+                                <button class="btn btn-danger" ng-click="deletePost(post)">Delete</button>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container" ng-hide="role">
+        <div class="page-header">
+            <h3>Create a new Post</h3>
+        </div>
+            
+        <div class="row">
+            <div class="form-group col-md-4">
+                <label for="Title">Title</label>
+                <input type="text" name="title" class="form-control" ng-model="p.title"/>
+            </div>
+            <div class="form-group col-md-4">
+                <label for="Link">Link</label>
+                <input type="text" name="link" class="form-control" ng-model="p.link" />
+            </div>
+            <div class="form-group col-md-4">
+                <label for="Author">Author</label>
+                <input type="text" name="author" class="form-control" ng-model="p.author" disabled/>
+            </div>
+            <div class="form-group col-md-4">
+                <button class="btn btn-primary" ng-click="addPost()">Add Post</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,65 @@
+<div ng-controller="CommentController">
+    <div class="container">
+        <ol class="breadcrumb">
+          <li><a ui-sref="topics">Topics</a></li>
+          <li><a ui-sref="topics.posts({topicid: topicid})">Posts</a></li>
+          <li class="active">Comments</li>
+        </ol>
+    </div>
+        
+    <div class="container">
+        <div class="jumbotron">
+            <div class="panel panel-default">
+              <!-- Default panel contents -->
+                <div class="panel-heading"><h4>Topic: {{topicName}} &emsp;&emsp;Post: {{post.title}}&emsp;<!--- By {{topic.author}}--></h4></div>
+                
+                <!-- List group -->
+                <ul class="list-group">
+                    <li class="list-group-item" ng-repeat="comment in post.comments | orderBy : '-votes'">
+                        <div class="row" ng-show="edit[post.comments.indexOf(comment)]">
+                            <div class="form-group col-md-4">
+                                <label for="Body">Body</label>
+                                <input type="textarea" name="title" class="form-control col-md-3" ng-model="comment.body"/>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="Author">Author</label>
+                                <input type="text" name="author" class="form-control col-md-3" ng-model="comment.author" disabled/>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <button class="btn btn-info" ng-click="updateComment(comment)">Update</button>
+                            </div>
+                        </div>
+                        
+                        <div class="row" ng-hide="edit[post.comments.indexOf(comment)]">
+                            <span class="glyphicon glyphicon-chevron-up col-md-1" ng-click="upvoteComment(comment)">{{comment.votes}}</span>
+                            <span class="list-group-item-heading col-md-7">&emsp;{{comment.body}}&emsp;-By {{comment.author}}</span>
+                            <div class="form-group col-md-4" ng-hide="role">
+                                <button class="btn btn-info" ng-click="editComment(comment)">Edit</button>
+                                <button class="btn btn-danger" ng-click="deleteComment(comment)">Delete</button>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <!--<div class="page-header">-->
+        <!--  <h1>Example page header <small>Subtext for header</small></h1>-->
+        <!--</div>-->
+            
+        <div class="row">
+            <div class="form-group col-md-6">
+                <label for="Body">Body</label>
+                <input type="text" name="body" class="form-control" ng-model="c.body"/>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="Author">Author</label>
+                <input type="text" name="author" class="form-control" ng-model="c.author" disabled/>
+            </div>
+            <div class="form-group col-md-4">
+                <button class="btn btn-primary" ng-click="addComment()">Add Comment</button>
+            </div>
+        </div>
+    </div>
+</div>

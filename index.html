@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="forum">
+    <head>
+       <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" >
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" >
+	<title>ReDDit ClOnE</title>        
+        
+    </head>
+    <body>
+        <div ui-view="header"></div>
+        <div ui-view="content"></div>
+        <div ui-view="footer"></div>
+        
+    </body>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.18/angular-ui-router.min.js"></script>
+    <script src="app/scripts/angular-cookies.js"></script>
+    <script src="app/models/app.js"></script>
+    <script src="app/models/controller.js"></script>    
+    <script src="app/models/services.js"></script>
+</html>

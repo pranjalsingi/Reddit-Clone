@@ -1,0 +1,39 @@
+<div ng-controller="LoginController"> 
+    <div class="container">
+    
+        <div class="col-sm-6 col-sm-offset-3">
+        
+            <h1><span class="fa fa-sign-in"></span> Login</h1>
+        
+            <!-- show any messages that come back with authentication -->
+            
+            <div class="alert alert-success" ng-show="success">
+                <strong>Yeah! </strong>{{message}} <br>Wait.. You would be redirected..
+            </div>
+            <div class="alert alert-danger" ng-show="error">
+                <strong>Ooops! </strong> {{message}}
+            </div>
+        
+            <!-- LOGIN FORM -->
+            <form ng-submit="login()">
+                <div class="form-group">
+                    <label>Username</label>
+                    <input type="text" class="form-control" name="username" ng-model="user.username">
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" class="form-control" name="password" ng-model="user.password">
+                </div>
+        
+                <button type="submit" class="btn btn-warning btn-lg">Login</button>
+            </form>
+        
+            <hr>
+        
+            <p>Need an account? <a ui-sref="signup">Signup</a></p>
+            <p>Or go <a ui-sref="app">home</a>.</p>
+        
+        </div>
+    
+    </div>
+</div>

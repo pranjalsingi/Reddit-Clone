@@ -1,0 +1,56 @@
+<div ng-controller="TopicController">
+    <div class="container">
+        <ol class="breadcrumb">
+          <li class="active">Topics</li>
+        </ol>
+    </div>
+    
+    <div class="container">
+        <div class="jumbrotron">
+            <div ng-repeat="topic in topics | orderBy : '-votes'" style="font-size:20px">
+                <div class="row">
+                    <div class="form-group col-md-4" ng-show="edit[topics.indexOf(topic)]">
+                        <label for="Topic Name">Topic Name</label>
+                        <input type="text" name="name" class="form-control col-md-3" ng-model="topic.name"/>
+                    </div>
+                    <div class="form-group col-md-4" ng-show="edit[topics.indexOf(topic)]">
+                        <label for="Author">Author</label>
+                        <input type="text" name="author" class="form-control col-md-3" ng-model="topic.author" disabled/>
+                    </div>
+                    <div class="form-group col-md-4" ng-show="edit[topics.indexOf(topic)]">
+                        <button class="btn btn-info" ng-click="updateTopic(topic)">Update</button>
+                    </div>
+                    
+                    <div class="form-group col-md-6" ng-hide="edit[topics.indexOf(topic)]">
+                        <span ng-hide="edit[topics.indexOf(topic)]" class="glyphicon glyphicon-chevron-up" ng-click="upvoteTopic(topic)"></span><span ng-hide="edit[topics.indexOf(topic)]">{{topic.votes}}</span>
+                        <a ui-sref="topics.posts({topicid: topic._id})">
+                            <span ng-hide="edit[topics.indexOf(topic)]" style="margin-left:10px">{{topic.name}}&nbsp;&nbsp;&nbsp; -By {{topic.author}}</span>
+                        </a>
+                    </div>
+                    <div class="form-group col-md-4" ng-hide="edit[topics.indexOf(topic)] || role">
+                        <button class="btn btn-info" ng-click="editTopic(topic)">Edit</button>
+                        <button class="btn btn-danger" ng-click="deleteTopic(topic)">Delete</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container" ng-hide="role">
+        <div class="page-header">
+            <h3>Create a new Topic</h3>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-6">
+                <label for="Topic Name">Topic Name</label>
+                <input type="text" name="name" class="form-control col-md-3" ng-model="t.name"/>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="Author">Author</label>
+                <input type="text" name="author" class="form-control col-md-3" ng-model="t.author" disabled/>
+            </div>
+            <div class="form-group col-md-6">
+                <button class="btn btn-primary" ng-click="addTopic()">Add Topic</button>
+            </div>
+        </div>
+    </div>
+</div>
