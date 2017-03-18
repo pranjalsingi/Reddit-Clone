@@ -76,5 +76,5 @@ app.use(function(err, req, res, next) {
 
 
 //starting server
-app.listen(443, process.env.IP || "0.0.0.0");
+app.listen(80, process.env.IP || "0.0.0.0");
 console.log("Magic happens at "+process.env.PORT);
