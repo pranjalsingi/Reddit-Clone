@@ -8,6 +8,9 @@ var Verify = require('./verify');
 /* GET users listing. */
 
 router.post('/register', function(req, res, next){
+	console.log("reached in /register");
+	res.setHeader("Access-Control-Allow-Origin", "*");
+    	res.setHeader("Access-Control-Allow-Headers", "Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With, X-Access-Token");
 	User.register(new User({ username : req.body.username, role: req.body.role }), req.body.password, function(err, user) {
 		if (err) {
 		    return res.status(500).json({err: err});
@@ -19,6 +22,9 @@ router.post('/register', function(req, res, next){
 });
 
 router.post('/login', function(req, res, next){
+	console.log("reached in /login");
+	res.setHeader("Access-Control-Allow-Origin", "*");
+    	res.setHeader("Access-Control-Allow-Headers", "Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With, X-Access-Token");
 	passport.authenticate('local', function(err, user, info){
 		if(err){
 			return next(err);

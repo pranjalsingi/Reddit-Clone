@@ -37,7 +37,7 @@ app.use(express.static(path.resolve(__dirname)));
 
 var user    = require('./app/routes/userRouter');
 var topic   = require('./app/routes/topicRouter');
-    
+
 // All router should have prefixed /api
 app.use('/', user);
 app.use('/api', topic);

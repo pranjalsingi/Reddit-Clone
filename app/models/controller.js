@@ -36,7 +36,7 @@ angular.module('forum')
         $scope.user = {};
         $scope.userInfo = {};
         $scope.login = function(){
-            $http.post('http://104.131.4.157/login', $scope.user)
+            $http.post('//104.131.4.157/login', $scope.user)
                 .success(function(content){
                     $scope.success = true;
                     $scope.error = false;
@@ -67,7 +67,7 @@ angular.module('forum')
         $scope.user = {};
         $scope.user.role = "User";
         $scope.signup = function(){
-            $http.post('http://104.131.4.157/register', $scope.user)
+            $http.post('//104.131.4.157/register', $scope.user)
                 .success(function(content){
                     $scope.success = true;
                     $scope.error = false;
@@ -100,14 +100,14 @@ angular.module('forum')
         $scope.t.author = $window.sessionStorage.name;
         
         
-        $http.get('http://104.131.4.157/api/topics').success(function(content){
+        $http.get('//104.131.4.157/api/topics').success(function(content){
             $scope.topics = content;
         });
         
         $scope.edit = new Array();
         
         $scope.addTopic = function(){
-            $http.post('http://104.131.4.157/api/topics', $scope.t).success(function(content){
+            $http.post('//104.131.4.157/api/topics', $scope.t).success(function(content){
                 $scope.topics.push(content);
                 $scope.t.name = "";
             });
@@ -126,7 +126,7 @@ angular.module('forum')
         };
         
         $scope.deleteTopic = function(top){
-            $http.delete('http://104.131.4.157/api/topics/' + top._id).success(function(content){
+            $http.delete('//104.131.4.157/api/topics/' + top._id).success(function(content){
                 var index = $scope.topics.indexOf(top);
                 if(index > -1){
                     $scope.topics.splice(index, 1);
@@ -135,7 +135,7 @@ angular.module('forum')
         };
         
         $scope.upvoteTopic = function(top){
-            $http.put('http://104.131.4.157/api/topics/' + top._id + '/vote').success(function(content){
+            $http.put('//104.131.4.157/api/topics/' + top._id + '/vote').success(function(content){
                 var index = $scope.topics.indexOf(top);
                 if(index > -1){
                     $scope.topics[index].votes++;
